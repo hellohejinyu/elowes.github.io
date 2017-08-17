@@ -4,15 +4,7 @@
 
 - 如果返回的数据为 JSON 格式，则需要在响应头部分添加信息：
   - Content-Type: application/json
-
-且返回信息格式为
-
-``` js
-{
-    "code": 200,
-    "response": <response any>
-}
-```
+  - 且返回信息格式必须为标准的 JSON 格式
 
 - 如果返回的数据是文本、图片等非 JSON 格式的数据，直接在响应体里返回数据即可。但是需要在响应头添加正确的 Content-Type，下面的链接可以查看常用的 Media Types
     - [所有 Media Types](https://www.iana.org/assignments/media-types/media-types.xhtml)
@@ -33,20 +25,20 @@
 
 ``` js
 {
-    "code": <httpCode int>,
+    "error_code": <errorCode int>,
     "error": "<errMsg string>"
 }
 ```
 
 | 字段名称 | 说明 |
 | :-----: | --- |
-| code    | 返回的错误码，用来定位错误场景 |
-| error   | 包含详细的错误信息 |
+| error_code    | 返回的错误码，用来定位错误场景（业务错误码，不是 http 错误码） |
+| error         | 包含详细的错误信息 |
 
 ## 错误码列表
 以下表格列出了常见错误码：（需要增加请自行维护此文档）
 
-| HTTP状态码 | 说明 |
+| 错误码     | 说明 |
 | :--------:| --- |
 | 400       | 请求报文格式错误，包括上传时，上传表单格式错误 |
 | 401       | 认证授权失败，认证超时等等 |
@@ -67,37 +59,27 @@
 1. response 中的数据格式在任何情况下需要保持一致，
 
 ``` js
-{
-  "code": 200,
-  "response": [{"id": 1}, {"id": 2}]
-}
+[{"id": 1}, {"id": 2}]
 
 // response 中的数据只有 1 条时仍然要保证数据类型为数组
-{
-  "code": 200,
-  "response": [{"id": 1}]
-}
+[{"id": 1}]
 ```
 
-2. response 中的格式不要使用字符串格式（除了只能用字符串表示的数据）
+2. response 中的格式不要使用字符串格式
 
 ``` js
 // 错误示例
-{
-    "code": 200,
-    "response": "{\"id\": 1}"
-}
+"{\"id\": 1}"
+
+// 正确示例
+{"id": 1} 
+
+// 错误示例
+"新建成功"
 
 // 正确示例
 {
-    "code": 200,
-    "response": {"id": 1} 
-}
-
-// 正确示例
-{
-    "code": 200,
-    "response": "这样也是合法的，因为我只能是字符串"
+  "msg": "新建成功"
 }
 ```
 
