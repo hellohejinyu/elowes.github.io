@@ -14,7 +14,7 @@
 }
 ```
 
-- 如果返回的数据是文本、图片等非 JSON 格式的数据，需要在响应头添加正确的 Content-Type，下面的链接可以查看常用的 Media Types
+- 如果返回的数据是文本、图片等非 JSON 格式的数据，直接在响应体里返回数据即可。但是需要在响应头添加正确的 Content-Type，下面的链接可以查看常用的 Media Types
     - [所有 Media Types](https://www.iana.org/assignments/media-types/media-types.xhtml)
     - [常用 HTTP Content-Type 对照表](http://tool.oschina.net/commons)
 
