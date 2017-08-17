@@ -14,9 +14,9 @@
 }
 ```
 
-- 如果返回的数据是文本、图片等非 JSON 格式的数据，需要在响应头添加正确的 Content-Type，下面的链接可以查看常用的 Media Types
-    - https://www.iana.org/assignments/media-types/media-types.xhtml
-    - http://tool.oschina.net/commons
+- 如果返回的数据是文本、图片等非 JSON 格式的数据，需要在响应头添加正确的 Content-Type，下面的链接可以查看常用的 Media Types
+    - [所有 Media Types](https://www.iana.org/assignments/media-types/media-types.xhtml)
+    - [常用 HTTP Content-Type 对照表](http://tool.oschina.net/commons)
 
 
 # 错误响应
@@ -46,7 +46,7 @@
 ## 错误码列表
 以下表格列出了常见错误码：（需要增加请自行维护此文档）
 
-| HTTP状态码 | 说明 |
+| HTTP状态码 | 说明 |
 | :--------:| --- |
 | 400       | 请求报文格式错误，包括上传时，上传表单格式错误 |
 | 401       | 认证授权失败，认证超时等等 |
@@ -79,7 +79,7 @@
 }
 ```
 
-2. response 中的格式不要使用字符串格式（除了只能用字符串表示的数据）
+2. response 中的格式不要使用字符串格式（除了只能用字符串表示的数据）
 
 ``` js
 // 错误示例
