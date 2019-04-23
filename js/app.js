@@ -10,6 +10,7 @@ function getRandomNum () {
     const index = Math.floor(Math.random() * normalNum.length)
     const selectedNum = normalNum.splice(index, 1)
     ans.push(selectedNum[0])
+    ans.sort((a, b) => a - b)
   }
 
   const specIndex = Math.floor(Math.random() * specNum.length)
