@@ -27,38 +27,64 @@ const App = () => {
     )
   }, [])
   return (
-    <div
-      style={{
-        borderRadius: 5,
-        padding: 12,
-        display: 'flex',
-        boxShadow: '0px 0px 5px rgba(0, 0, 0, .1)',
-        justifyContent: 'space-around',
-        margin: `50px 12px`
-      }}
-    >
-      {
-        state.map((n, index) => {
-          return (
-            <span
-              style={{
-                boxShadow: '0px 0px 5px rgba(0, 0, 0, .1)',
-                flexShrink: 0,
-                textAlign: 'center',
-                lineHeight: '36px',
-                width: 36,
-                height: 36,
-                borderRadius: '50%',
-                fontSize: 16,
-                fontWeight: 'bold',
-                color: '#fff',
-                backgroundColor: index === state.length - 1 ? '#1890ff' : '#f5222d'
-              }}
-            >{n}</span>
+    <>
+      <div
+        style={{
+          borderRadius: 5,
+          padding: 12,
+          display: 'flex',
+          boxShadow: '0px 0px 5px rgba(0, 0, 0, .1)',
+          justifyContent: 'space-around',
+          boxSizing: 'border-box',
+          width: '100%'
+        }}
+      >
+        {
+          state.map((n, index) => {
+            return (
+              <span
+                style={{
+                  boxShadow: '0px 0px 5px rgba(0, 0, 0, .1)',
+                  flexShrink: 0,
+                  textAlign: 'center',
+                  lineHeight: '36px',
+                  width: 36,
+                  height: 36,
+                  borderRadius: '50%',
+                  fontSize: 16,
+                  fontWeight: 'bold',
+                  color: '#fff',
+                  backgroundColor: index === state.length - 1 ? '#1890ff' : '#f5222d'
+                }}
+              >{n}</span>
+            )
+          })
+        }
+      </div>
+      <button
+        style={{
+          marginTop: 16,
+          color: '#fff',
+          backgroundColor: '#1890ff',
+          borderColor: '#1890ff',
+          textShadow: '0 -1px 0 rgba(0,0,0,0.12)',
+          boxShadow: '0 2px 0 rgba(0,0,0,0.045)',
+          borderRadius: 4,
+          fontSize: 14,
+          padding: `0 16px`,
+          height: 32,
+          lineHeight: '32px',
+          outline: 'none'
+        }}
+        onClick={() => {
+          setState(
+            getRandomNum()
           )
-        })
-      }
-    </div>
+        }}
+      >
+        REFRESH
+      </button>
+    </>
   )
 }
 
