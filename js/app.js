@@ -79,7 +79,7 @@ const App = () => {
     const y = new Date().getFullYear().toString()
     const m = (new Date().getMonth() + 1).toString().padStart(2, '0')
     const d = (new Date().getDate()).toString().padStart(2, '0')
-    const dateEnd = new Date(`${y}-${m}-${d} 08:00:00`).getTime()
+    const dateEnd = new Date(`${y}/${m}/${d} 08:00:00`).getTime()
     fetch(`https://api.1qa.link/lottery/get?dateStart=1045929600000&dateEnd=${dateEnd}`)
       .then((res) => {
         return res.json()
