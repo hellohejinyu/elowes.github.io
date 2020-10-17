@@ -1,0 +1,41 @@
+@font-face {
+  font-family: 'font';
+  src: url('/fonts/font.ttf');
+}
+
+#app {
+  font-family: 'font';
+}
+
+.root {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000;
+}
+
+.item {
+  font-size: 10vw;
+  color: #eee;
+  text-transform: full-width;
+  display: flex;
+  align-items: flex-end;
+  line-height: 1;
+}
+
+.item > div {
+  width: 6vw;
+  text-align: center;
+}
+
+.item > span {
+  font-size: 5vw;
+  margin-right: 16px;
+  position: relative;
+  bottom: 0.8vw;
+}
+
+.item:last-child > span {
+  margin-right: 0;
+}
