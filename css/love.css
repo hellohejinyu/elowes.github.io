@@ -12,12 +12,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #000;
+  background-color: #fefefe;
 }
 
 .item {
   font-size: 10vw;
-  color: #eee;
+  color: #333;
+  text-shadow: 0 0 8px rgba(0, 0, 0, .2);
   text-transform: full-width;
   display: flex;
   align-items: flex-end;

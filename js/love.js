@@ -27,7 +27,7 @@ const App = () => {
 
     setInterval(() => {
       calc();
-    }, 200);
+    }, 250);
   }, []);
   return (
     <div className='root'>
