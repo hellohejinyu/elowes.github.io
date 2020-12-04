@@ -1,4 +1,5 @@
 const { useEffect, useState } = React;
+import { load } from '//cdn.jsdelivr.net/npm/jinrishici@latest/jinrishici.min.js'
 
 const Item = ({ num, label }) => (
   <div className='item'>
@@ -23,6 +24,9 @@ const App = () => {
       setTime(secondsFormat(Math.floor((new Date().getTime() - new Date(2020, 9, 1).getTime()) / 1000)))
       setKnow(secondsFormat(Math.floor((new Date().getTime() - new Date(2020, 2, 22).getTime()) / 1000)))
     }
+    load((res) => {
+      console.log(res)
+    })
     calc();
 
     setInterval(() => {
