@@ -16,8 +16,16 @@ body {
 .days {
   display: flex;
   position: absolute;
-  top: 14vh;
-  right: 20vw;
+  top: 8vh;
+  right: 8vh;
+}
+
+.days > div {
+  display: flex;
+}
+
+.days > div:last-child {
+  margin-left: 16px;
 }
 
 .item {
@@ -25,10 +33,25 @@ body {
   font-size: 8vw;
   color: #333;
   text-shadow: 0 0 8px rgba(0, 0, 0, .2);
-  text-transform: full-width;
   display: flex;
   align-items: flex-end;
   line-height: 1;
+}
+
+@media (orientation:landscape) {
+  .item {
+    writing-mode: horizontal-tb;
+  }
+  .days {
+    display: block;
+    top: 8vh;
+    left: 8vh;
+    right: auto;
+  }
+  .days > div:last-child {
+    margin-left: 0;
+    margin-top: 12px;
+  }
 }
 
 .poem {

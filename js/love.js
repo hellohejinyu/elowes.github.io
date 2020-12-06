@@ -73,12 +73,12 @@ const App = () => {
     <div className='root'>
       <div className='days'>
         {know && (
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <div>
             <Item prefix='相识' num={know.day} label='天' />
           </div>
         )}
         {time && (
-          <div style={{ display: 'flex', marginLeft: 16 }}>
+          <div>
             <Item prefix='相知' num={time.day} label='天' />
           </div>
         )}
