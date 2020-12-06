@@ -78,21 +78,21 @@ const App = () => {
 
   return (
     <div className='root'>
-      <div className='days'>
-        {know && (
-          <div>
+      {
+        know && time && (
+          <div className='days'>
             <Item prefix='相识' num={know.day} label='天' />
-          </div>
-        )}
-        {time && (
-          <div>
             <Item prefix='相知' num={time.day} label='天' />
           </div>
-        )}
-      </div>
-      <div className='poem'>
-        {poem}
-      </div>
+        )
+      }
+      {
+        poem && (
+          <div className='poem'>
+            {poem}
+          </div>
+        )
+      }
     </div>
   )
 }
