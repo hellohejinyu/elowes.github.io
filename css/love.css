@@ -1,22 +1,27 @@
 @font-face {
   font-family: 'font';
-  src: url('/fonts/font.ttf');
+  /* src: url('/fonts/font.ttf'); */
+  src: url('/fonts/FZXiJinLJW.ttf');
+}
+
+body {
+  background-color: #e6e6e6;
 }
 
 #app {
   font-family: 'font';
 }
 
-.root {
-  height: 100vh;
+.days {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #fefefe;
+  position: absolute;
+  top: 14vh;
+  right: 20vw;
 }
 
 .item {
-  font-size: 10vw;
+  writing-mode: vertical-rl;
+  font-size: 8vw;
   color: #333;
   text-shadow: 0 0 8px rgba(0, 0, 0, .2);
   text-transform: full-width;
@@ -25,18 +30,15 @@
   line-height: 1;
 }
 
-.item > div {
-  width: 6vw;
-  text-align: center;
+.poem {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  color: #666;
 }
 
-.item > span {
-  font-size: 5vw;
-  margin-right: 16px;
-  position: relative;
-  bottom: 0.8vw;
-}
-
-.item:last-child > span {
-  margin-right: 0;
+@media screen and (min-width: 720px) {
+  .item {
+     font-size: 57.6px;
+  }
 }

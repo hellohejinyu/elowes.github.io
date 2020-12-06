@@ -1,4 +1,4 @@
-const { useState, useEffect } = React;
+const { useState, useEffect } = React
 
 function getRandomNum (r, b) {
   const normalNum = [...r]
@@ -50,6 +50,7 @@ const Balls = ({ data }) => {
         data.map((n, index) => {
           return (
             <span
+              key={index}
               style={{
                 boxShadow: '0px 0px 1px rgba(0, 0, 0, .1)',
                 flexShrink: 0,
@@ -126,14 +127,16 @@ const App = () => {
       })
   }, [])
   return (
-    balls.length > 0 ? (
-      balls.map((data, index) => (
-        <Balls key={index} data={data} />
-      ))
-    ) : (
-      <p>获取历年双色球数据并计算中…</p>
-    )
+    balls.length > 0
+      ? (
+          balls.map((data, index) => (
+            <Balls key={index} data={data} />
+          ))
+        )
+      : (
+          <p>获取历年双色球数据并计算中…</p>
+        )
   )
 }
 
-ReactDOM.render(<App />, document.getElementById("app"));
+ReactDOM.render(<App />, document.getElementById('app'))
