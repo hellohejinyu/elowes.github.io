@@ -69,6 +69,13 @@ const App = () => {
       calc()
     }, 250)
   }, [])
+
+  useEffect(() => {
+    if (poem) {
+      document.title = poem
+    }
+  }, [poem])
+
   return (
     <div className='root'>
       <div className='days'>
