@@ -1,4 +1,6 @@
 import { load } from '/js/jinrishici.min.js'
+import waves from '/sketchs/waves.js'
+import P5Wrapper from '/js/P5Wrapper.js'
 const { useEffect, useState } = React
 
 const convertToChinaNum = (num) => {
@@ -78,6 +80,9 @@ const App = () => {
 
   return (
     <div className='root'>
+      <div style={{ fontSize: 0 }}>
+        <P5Wrapper sketch={waves} isPlaying />
+      </div>
       {
         know && time && (
           <div className='days'>
