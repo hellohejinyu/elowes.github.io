@@ -7856,7 +7856,7 @@ function growMountains (p, mountains) {
   const colorNameDiv = document.getElementById('color-name')
   if (colorNameDiv) colorNameDiv.innerText = colorSelected.name
 
-  new Array(5).fill(1).map((_, i) => {
+  new Array(5).fill(1).forEach((_, i) => {
     const a = 255 - 50 * i
     c.setAlpha(a)
     const h = p.height - 50 * i

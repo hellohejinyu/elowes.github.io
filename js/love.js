@@ -1,4 +1,3 @@
-import { load } from '/js/jinrishici.min.js'
 import waves from '/sketchs/waves.js'
 import P5Wrapper from '/js/P5Wrapper.js'
 const { useEffect, useState } = React
@@ -52,29 +51,25 @@ function secondsFormat (s) {
 
 const App = () => {
   const [time, setTime] = useState()
-  const [poem, setPoem] = useState()
+  const [poem, setPoem] = useState([])
   useEffect(() => {
     const calc = () => {
       setTime(secondsFormat(Math.floor((new Date().getTime() - new Date(2021, 6, 10).getTime()) / 1000)))
     }
-    load((res) => {
-      console.log(res)
-      if (res.status === 'success') {
-        setPoem(res.data.content)
+    fetch('https://v1.hitokoto.cn/?c=a&c=h&c=kencode=json&chartset=utf-8').then((res) => res.json()).then((res) => {
+      if (res.hitokoto && res.from) {
+        setPoem([res.hitokoto, res.from])
       }
     })
     calc()
-
     setInterval(() => {
       calc()
     }, 250)
   }, [])
 
   useEffect(() => {
-    if (poem) {
-      document.title = poem
-    }
-  }, [poem])
+    document.title = 'RUI.LOVE'
+  }, [])
 
   return (
     <div className='root'>
@@ -91,7 +86,12 @@ const App = () => {
       {
         poem && (
           <div className='poem'>
-            {poem}
+            <div style={{ textAlign: 'justify', lineHeight: 1.5 }}>
+              {poem[0]}
+            </div>
+            <div style={{ textAlign: 'right', marginTop: 8 }}>
+              ——&nbsp;&nbsp;{poem[1]}
+            </div>
           </div>
         )
       }

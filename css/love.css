@@ -1,8 +1,8 @@
 @font-face {
   font-family: 'font';
-  /* src: url('/fonts/font.ttf'); */
-  /* src: url('/fonts/FZXiJinLJW.ttf'); */
-  src: url('//cdn2.1qa.link/FZXiJinLJW.ttf');
+  /* src     : url('/fonts/font.ttf'); */
+  /* src     : url('/fonts/FZXiJinLJW.ttf'); */
+  src        : url('//cdn2.1qa.link/FZXiJinLJW.ttf');
 }
 
 #app {
@@ -10,55 +10,58 @@
 }
 
 .days {
-  position: fixed;
-  display: flex;
+  position       : fixed;
+  display        : flex;
   justify-content: flex-end;
-  padding-top: 8vh;
-  padding-right: 8vh;
-  top: 0;
-  left: 0;
-  width: 100%;
-  box-sizing: border-box;
+  padding-top    : 8vh;
+  padding-right  : 8vh;
+  top            : 0;
+  left           : 0;
+  width          : 100%;
+  box-sizing     : border-box;
 }
 
-.days > div:last-child {
+.days>div:last-child {
   margin-left: 16px;
 }
 
 .item {
   writing-mode: vertical-rl;
-  font-size: 8vw;
-  color: #333;
-  text-shadow: 0 0 8px rgba(0, 0, 0, .2);
-  display: flex;
-  align-items: flex-end;
-  line-height: 1;
+  font-size   : 8vw;
+  color       : #333;
+  text-shadow : 0 0 8px rgba(0, 0, 0, .2);
+  display     : flex;
+  align-items : flex-end;
+  line-height : 1;
 }
 
 @media (orientation:landscape) {
   .item {
     writing-mode: horizontal-tb;
   }
+
   .days {
-    display: block;
-    padding-top: 8vh;
-    padding-left: 8vh;
+    display      : block;
+    padding-top  : 8vh;
+    padding-left : 8vh;
     padding-right: auto;
   }
-  .days > div:last-child {
+
+  .days>div:last-child {
     margin-left: 0;
-    margin-top: 12px;
+    margin-top : 12px;
   }
 }
 
 .poem {
   position: fixed;
-  bottom: 16px;
-  left: 16px;
+  bottom  : 16px;
+  left    : 16px;
+  right   : 16px;
 }
 
 @media screen and (min-width: 720px) {
   .item {
-     font-size: 57.6px;
+    font-size: 57.6px;
   }
 }
