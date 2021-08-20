@@ -52,12 +52,10 @@ function secondsFormat (s) {
 
 const App = () => {
   const [time, setTime] = useState()
-  const [know, setKnow] = useState()
   const [poem, setPoem] = useState()
   useEffect(() => {
     const calc = () => {
-      setTime(secondsFormat(Math.floor((new Date().getTime() - new Date(2020, 9, 1).getTime()) / 1000)))
-      setKnow(secondsFormat(Math.floor((new Date().getTime() - new Date(2020, 2, 22).getTime()) / 1000)))
+      setTime(secondsFormat(Math.floor((new Date().getTime() - new Date(2021, 6, 10).getTime()) / 1000)))
     }
     load((res) => {
       console.log(res)
@@ -84,10 +82,9 @@ const App = () => {
         <P5Wrapper sketch={waves} isPlaying />
       </div>
       {
-        know && time && (
+        time && (
           <div className='days'>
-            <Item prefix='相识' num={know.day} label='天' />
-            <Item prefix='相知' num={time.day} label='天' />
+            <Item prefix='相识' num={time.day} label='天' />
           </div>
         )
       }
