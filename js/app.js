@@ -46,30 +46,29 @@ const Balls = ({ data }) => {
         width: '100%'
       }}
     >
-      {
-        data.map((n, index) => {
-          return (
-            <span
-              key={index}
-              style={{
-                boxShadow: '0px 0px 1px rgba(0, 0, 0, .1)',
-                flexShrink: 0,
-                textAlign: 'center',
-                lineHeight: '36px',
-                width: 36,
-                height: 36,
-                borderRadius: '50%',
-                fontSize: 16,
-                fontWeight: 'bold',
-                color: '#fff',
-                backgroundColor: index === data.length - 1 ? '#1890ff' : '#f5222d'
-              }}
-            >
-              {n.toString().padStart(2, '0')}
-            </span>
-          )
-        })
-      }
+      {data.map((n, index) => {
+        return (
+          <span
+            key={index}
+            style={{
+              boxShadow: '0px 0px 1px rgba(0, 0, 0, .1)',
+              flexShrink: 0,
+              textAlign: 'center',
+              lineHeight: '36px',
+              width: 36,
+              height: 36,
+              borderRadius: '50%',
+              fontSize: 16,
+              fontWeight: 'bold',
+              color: '#fff',
+              backgroundColor:
+                index === data.length - 1 ? '#1890ff' : '#f5222d'
+            }}
+          >
+            {n.toString().padStart(2, '0')}
+          </span>
+        )
+      })}
     </div>
   )
 }
@@ -79,18 +78,20 @@ const App = () => {
   useEffect(() => {
     const y = new Date().getFullYear().toString()
     const m = (new Date().getMonth() + 1).toString().padStart(2, '0')
-    const d = (new Date().getDate()).toString().padStart(2, '0')
+    const d = new Date().getDate().toString().padStart(2, '0')
     const dateEnd = new Date(`${y}/${m}/${d} 08:00:00`).getTime()
-    fetch(`https://api.1qa.link/lottery/get?dateStart=1045929600000&dateEnd=${dateEnd}`)
+    fetch(
+      `https://api.1qa.link/lottery/get?dateStart=1045929600000&dateEnd=${dateEnd}`
+    )
       .then((res) => {
         return res.json()
       })
       .then((data) => {
         const total = data.content.length
-        const redAvg = total * 6 / 33
+        const redAvg = (total * 6) / 33
         const blueAvg = total / 16
         data.content.forEach((rec) => {
-          Object.keys(rec).forEach(k => {
+          Object.keys(rec).forEach((k) => {
             if (keys.includes(k)) {
               addRec(rec[k], resRed)
             }
@@ -114,29 +115,23 @@ const App = () => {
         if (r.length < 6 || b.length === 0) {
           alert('数据错误')
         } else {
-          setBalls(
-            [
-              getRandomNum(r, b),
-              getRandomNum(r, b),
-              getRandomNum(r, b),
-              getRandomNum(r, b),
-              getRandomNum(r, b)
-            ]
-          )
+          setBalls([
+            getRandomNum(r, b),
+            getRandomNum(r, b),
+            getRandomNum(r, b),
+            getRandomNum(r, b),
+            getRandomNum(r, b)
+          ])
         }
       })
   }, [])
-  return (
-    balls.length > 0
-      ? (
-          balls.map((data, index) => (
-            <Balls key={index} data={data} />
-          ))
-        )
-      : (
-          <p>获取历年双色球数据并计算中…</p>
-        )
-  )
+  return balls.length > 0
+    ? (
+        balls.map((data, index) => <Balls key={index} data={data} />)
+      )
+    : (
+    <p>获取历年双色球数据并计算中…</p>
+      )
 }
 
 ReactDOM.render(<App />, document.getElementById('app'))

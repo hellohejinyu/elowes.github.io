@@ -1,6 +1,6 @@
-import waves from '/sketchs/waves.js'
-import P5Wrapper from '/js/P5Wrapper.js'
+import waves from '/js/waves.js'
 const { useEffect, useState } = React
+const ReactP5Wrapper = window.ReactP5Wrapper
 
 const convertToChinaNum = (num) => {
   const arr1 = ['零', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖']
@@ -11,7 +11,7 @@ const convertToChinaNum = (num) => {
   const english = num.toString().split('')
   let result = ''
   for (let i = 0; i < english.length; i++) {
-    const desI = english.length - 1 - i// 倒序排列设值
+    const desI = english.length - 1 - i // 倒序排列设值
     result = arr2[i] + result
     const arr1Index = english[desI]
     result = arr1[arr1Index] + result
@@ -34,7 +34,7 @@ const convertToChinaNum = (num) => {
 }
 
 const Item = ({ prefix, num, label }) => (
-  <div className='item'>
+  <div className="item">
     {prefix}
     {convertToChinaNum(num)}
     {label}
@@ -54,13 +54,21 @@ const App = () => {
   const [poem, setPoem] = useState([])
   useEffect(() => {
     const calc = () => {
-      setTime(secondsFormat(Math.floor((new Date().getTime() - new Date(2021, 6, 10).getTime()) / 1000)))
+      setTime(
+        secondsFormat(
+          Math.floor(
+            (new Date().getTime() - new Date(2021, 6, 10).getTime()) / 1000
+          )
+        )
+      )
     }
-    fetch('https://v1.hitokoto.cn/?c=a&c=h&c=kencode=json&chartset=utf-8').then((res) => res.json()).then((res) => {
-      if (res.hitokoto && res.from) {
-        setPoem([res.hitokoto, res.from])
-      }
-    })
+    fetch('https://v1.hitokoto.cn/?c=a&c=h&c=kencode=json&chartset=utf-8')
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.hitokoto && res.from) {
+          setPoem([res.hitokoto, res.from])
+        }
+      })
     calc()
     setInterval(() => {
       calc()
@@ -72,29 +80,23 @@ const App = () => {
   }, [])
 
   return (
-    <div className='root'>
+    <div className="root">
       <div style={{ fontSize: 0 }}>
-        <P5Wrapper sketch={waves} isPlaying />
+        <ReactP5Wrapper sketch={waves} isPlaying />
       </div>
-      {
-        time && (
-          <div className='days'>
-            <Item prefix='相识' num={time.day} label='天' />
+      {time && (
+        <div className="days">
+          <Item prefix="相识" num={time.day} label="天" />
+        </div>
+      )}
+      {poem && (
+        <div className="poem">
+          <div style={{ textAlign: 'justify', lineHeight: 1.5 }}>{poem[0]}</div>
+          <div style={{ textAlign: 'right', marginTop: 8 }}>
+            ——&nbsp;&nbsp;{poem[1]}
           </div>
-        )
-      }
-      {
-        poem && (
-          <div className='poem'>
-            <div style={{ textAlign: 'justify', lineHeight: 1.5 }}>
-              {poem[0]}
-            </div>
-            <div style={{ textAlign: 'right', marginTop: 8 }}>
-              ——&nbsp;&nbsp;{poem[1]}
-            </div>
-          </div>
-        )
-      }
+        </div>
+      )}
     </div>
   )
 }
