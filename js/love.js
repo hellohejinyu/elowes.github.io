@@ -1,5 +1,5 @@
 import waves from '/js/waves.js'
-const { useEffect, useState } = React
+const { useEffect, useState, useMemo } = React
 const ReactP5Wrapper = window.ReactP5Wrapper
 
 const convertToChinaNum = (num) => {
@@ -41,23 +41,25 @@ const Item = ({ prefix, num, label }) => (
   </div>
 )
 
-function secondsFormat (s) {
-  const day = Math.floor(s / (24 * 3600))
-  const hour = Math.floor((s - day * 24 * 3600) / 3600)
-  const minute = Math.floor((s - day * 24 * 3600 - hour * 3600) / 60)
-  const second = s - day * 24 * 3600 - hour * 3600 - minute * 60
-  return { day, hour, minute, second }
+function msFormat (s) {
+  const day = Math.floor(s / 1e3 / (24 * 3600))
+  const hour = Math.floor((s - day * 24 * 3600 * 1e3) / 3600)
+  const minute = Math.floor((s - day * 24 * 3600 * 1e3 - hour * 3600 * 1e3) / 60)
+  const second = Math.floor((s - day * 24 * 3600 * 1e3 - hour * 3600 * 1e3 - minute * 60 * 1e3) / 1e3)
+  const ms = s - day * 24 * 3600 * 1e3 - hour * 3600 * 1e3 - minute * 60 * 1e3 - second * 1e3
+  return { day, hour, minute, second, ms }
 }
 
 const App = () => {
   const [time, setTime] = useState()
   const [poem, setPoem] = useState([])
+
   useEffect(() => {
     const calc = () => {
       setTime(
-        secondsFormat(
+        msFormat(
           Math.floor(
-            (new Date().getTime() - new Date(2021, 6, 10).getTime()) / 1000
+            (new Date().getTime() - new Date(2021, 6, 10, 18, 9).getTime())
           )
         )
       )
@@ -72,12 +74,26 @@ const App = () => {
     calc()
     setInterval(() => {
       calc()
-    }, 250)
+    }, 1000)
   }, [])
 
   useEffect(() => {
-    document.title = 'RUI.LOVE'
+    const titles = ['～你爱我～', '～我爱你～', '～蜜雪冰城甜蜜蜜～']
+    let index = 0
+    document.title = titles[index % titles.length]
+    setInterval(() => {
+      index++
+      document.title = titles[index % titles.length]
+    }, 1200)
   }, [])
+
+  const dot = useMemo(() => {
+    if (!time) return ''
+    if (time.hour === 0 && time.minute === 0 && time.second === 0) return ''
+    const max = 6
+    const str = (time.hour / 24 + time.minute / 60 / 24 + time.second / 60 / 60 / 24 + time.ms / 60 / 60 / 24 / 1e3).toFixed(max).slice(2).padEnd(max, '0')
+    return '点' + str.split('').map(l => convertToChinaNum(Number(l))).join('')
+  }, [time])
 
   return (
     <div className="root">
@@ -86,7 +102,7 @@ const App = () => {
       </div>
       {time && (
         <div className="days">
-          <Item prefix="相识" num={time.day} label="天" />
+          <Item num={time.day} label={`${dot}天`} />
         </div>
       )}
       {poem && (
