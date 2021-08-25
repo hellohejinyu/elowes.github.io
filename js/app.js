@@ -1,6 +1,6 @@
 const { useState, useEffect } = React
 
-function getRandomNum (r, b) {
+function getRandomNum(r, b) {
   const normalNum = [...r]
   const specNum = [...b]
 
@@ -43,7 +43,7 @@ const Balls = ({ data }) => {
         boxShadow: '0px 0px 1px rgba(0, 0, 0, .4)',
         justifyContent: 'space-around',
         boxSizing: 'border-box',
-        width: '100%'
+        width: '100%',
       }}
     >
       {data.map((n, index) => {
@@ -62,7 +62,7 @@ const Balls = ({ data }) => {
               fontWeight: 'bold',
               color: '#fff',
               backgroundColor:
-                index === data.length - 1 ? '#1890ff' : '#f5222d'
+                index === data.length - 1 ? '#1890ff' : '#f5222d',
             }}
           >
             {n.toString().padStart(2, '0')}
@@ -81,7 +81,7 @@ const App = () => {
     const d = new Date().getDate().toString().padStart(2, '0')
     const dateEnd = new Date(`${y}/${m}/${d} 08:00:00`).getTime()
     fetch(
-      `https://api.1qa.link/lottery/get?dateStart=1045929600000&dateEnd=${dateEnd}`
+      `https://api.1qa.link/lottery/get?dateStart=1045929600000&dateEnd=${dateEnd}`,
     )
       .then((res) => {
         return res.json()
@@ -120,18 +120,16 @@ const App = () => {
             getRandomNum(r, b),
             getRandomNum(r, b),
             getRandomNum(r, b),
-            getRandomNum(r, b)
+            getRandomNum(r, b),
           ])
         }
       })
   }, [])
-  return balls.length > 0
-    ? (
-        balls.map((data, index) => <Balls key={index} data={data} />)
-      )
-    : (
+  return balls.length > 0 ? (
+    balls.map((data, index) => <Balls key={index} data={data} />)
+  ) : (
     <p>获取历年双色球数据并计算中…</p>
-      )
+  )
 }
 
 ReactDOM.render(<App />, document.getElementById('app'))

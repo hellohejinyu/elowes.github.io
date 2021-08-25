@@ -1,8 +1,50 @@
 import waves from '/js/waves.js'
-const { useEffect, useState, useMemo } = React
-const ReactP5Wrapper = window.ReactP5Wrapper
+import deepEqual from '/js/fast-deep-equal.js'
 
-const convertToChinaNum = (num) => {
+// @ts-expect-error
+const { createRef, memo, useEffect, useState, useMemo } = React
+
+const createCanvas = (sketch, container) => {
+  // @ts-expect-error
+  // eslint-disable-next-line new-cap
+  return new p5(sketch, container)
+}
+
+const ReactP5WrapperComponent = ({
+  sketch,
+  children,
+  ...props
+}: React.PropsWithChildren<{
+  sketch: unknown
+  isPlaying: boolean
+}>) => {
+  const wrapper = createRef<HTMLDivElement>()
+  const [instance, setInstance] = useState()
+
+  useEffect(() => {
+    if (wrapper.current === null) return
+    // @ts-expect-error
+    instance?.remove()
+    const canvas = createCanvas(sketch, wrapper.current)
+    setInstance(canvas)
+  }, [sketch, wrapper.current])
+
+  useEffect(() => {
+    // @ts-expect-error
+    instance?.updateWithProps?.(props)
+  }, [props])
+
+  return <div ref={wrapper}>{children}</div>
+}
+
+const ReactP5Wrapper = memo(
+  ReactP5WrapperComponent,
+  (previousProps, nextProps) => {
+    return deepEqual(previousProps, nextProps)
+  },
+)
+
+const convertToChinaNum = (num: number) => {
   const arr1 = ['零', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖']
   const arr2 = ['', '十', '佰', '仟', '万', '十', '佰', '仟', '亿']
   if (!num || isNaN(num)) {
@@ -33,25 +75,52 @@ const convertToChinaNum = (num) => {
   return result
 }
 
-const Item = ({ prefix, num, label }) => (
+const Item = ({
+  prefix,
+  num,
+  label,
+}: {
+  prefix?: string
+  num: number
+  label?: string
+}) => (
   <div className="item">
     {prefix && prefix.split('').map((l, i) => <span key={i}>{l}</span>)}
-    {convertToChinaNum(num).split('').map((l, i) => <span key={i}>{l}</span>)}
+    {convertToChinaNum(num)
+      .split('')
+      .map((l, i) => (
+        <span key={i}>{l}</span>
+      ))}
     {label && label.split('').map((l, i) => <span key={i}>{l}</span>)}
   </div>
 )
 
-function msFormat (s) {
+const msFormat = (s: number) => {
   const day = Math.floor(s / 1e3 / (24 * 3600))
   const hour = Math.floor((s - day * 24 * 3600 * 1e3) / 3600)
-  const minute = Math.floor((s - day * 24 * 3600 * 1e3 - hour * 3600 * 1e3) / 60)
-  const second = Math.floor((s - day * 24 * 3600 * 1e3 - hour * 3600 * 1e3 - minute * 60 * 1e3) / 1e3)
-  const ms = s - day * 24 * 3600 * 1e3 - hour * 3600 * 1e3 - minute * 60 * 1e3 - second * 1e3
+  const minute = Math.floor(
+    (s - day * 24 * 3600 * 1e3 - hour * 3600 * 1e3) / 60,
+  )
+  const second = Math.floor(
+    (s - day * 24 * 3600 * 1e3 - hour * 3600 * 1e3 - minute * 60 * 1e3) / 1e3,
+  )
+  const ms =
+    s -
+    day * 24 * 3600 * 1e3 -
+    hour * 3600 * 1e3 -
+    minute * 60 * 1e3 -
+    second * 1e3
   return { day, hour, minute, second, ms }
 }
 
 const App = () => {
-  const [time, setTime] = useState()
+  const [time, setTime] = useState<{
+    day: number
+    hour: number
+    minute: number
+    second: number
+    ms: number
+  }>()
   const [poem, setPoem] = useState([])
 
   useEffect(() => {
@@ -59,9 +128,9 @@ const App = () => {
       setTime(
         msFormat(
           Math.floor(
-            (new Date().getTime() - new Date(2021, 6, 10, 18, 9).getTime())
-          )
-        )
+            new Date().getTime() - new Date(2021, 6, 10, 18, 9).getTime(),
+          ),
+        ),
       )
     }
     fetch('https://v1.hitokoto.cn/?c=a&c=h&c=kencode=json&chartset=utf-8')
@@ -91,8 +160,22 @@ const App = () => {
     if (!time) return ''
     if (time.hour === 0 && time.minute === 0 && time.second === 0) return ''
     const max = 6
-    const str = (time.hour / 24 + time.minute / 60 / 24 + time.second / 60 / 60 / 24 + time.ms / 60 / 60 / 24 / 1e3).toFixed(max).slice(2).padEnd(max, '0')
-    return '点' + str.split('').map(l => convertToChinaNum(Number(l))).join('')
+    const str = (
+      time.hour / 24 +
+      time.minute / 60 / 24 +
+      time.second / 60 / 60 / 24 +
+      time.ms / 60 / 60 / 24 / 1e3
+    )
+      .toFixed(max)
+      .slice(2)
+      .padEnd(max, '0')
+    return (
+      '又' +
+      str
+        .split('')
+        .map((l) => convertToChinaNum(Number(l)))
+        .join('')
+    )
   }, [time])
 
   return (
@@ -117,4 +200,5 @@ const App = () => {
   )
 }
 
+// @ts-expect-error
 ReactDOM.render(<App />, document.getElementById('app'))
