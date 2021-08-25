@@ -45,8 +45,8 @@ const ReactP5Wrapper = memo(
 )
 
 const convertToChinaNum = (num: number) => {
-  const arr1 = ['零', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖']
-  const arr2 = ['', '十', '佰', '仟', '万', '十', '佰', '仟', '亿']
+  const arr1 = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九']
+  const arr2 = ['', '十', '百', '千', '万', '十', '百', '千', '亿']
   if (!num || isNaN(num)) {
     return '零'
   }
