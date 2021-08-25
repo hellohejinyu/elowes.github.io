@@ -35,9 +35,9 @@ const convertToChinaNum = (num) => {
 
 const Item = ({ prefix, num, label }) => (
   <div className="item">
-    {prefix}
-    {convertToChinaNum(num)}
-    {label}
+    {prefix && prefix.split('').map((l, i) => <span key={i}>{l}</span>)}
+    {convertToChinaNum(num).split('').map((l, i) => <span key={i}>{l}</span>)}
+    {label && label.split('').map((l, i) => <span key={i}>{l}</span>)}
   </div>
 )
 

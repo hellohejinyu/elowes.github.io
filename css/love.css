@@ -26,25 +26,25 @@
 }
 
 .item {
-  font-size  : 8vw;
-  width      : 8vw;
-  color      : #333;
-  text-shadow: 0 0 8px rgba(0, 0, 0, .2);
-  display    : flex;
-  align-items: flex-end;
-  line-height: 1;
+  font-size     : 8vw;
+  color         : #333;
+  text-shadow   : 0 0 8px rgba(0, 0, 0, .2);
+  display       : flex;
+  align-items   : flex-end;
+  flex-direction: column;
+  line-height   : 1;
 }
 
 @media (orientation:landscape) {
   .item {
-    width: auto;
+    flex-direction: row;
   }
 
   .days {
     display      : block;
     padding-top  : 8vh;
     padding-left : 8vh;
-    padding-right: auto;
+    padding-right: initial;
   }
 
   .days>div:last-child {
