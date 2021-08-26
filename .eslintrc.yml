@@ -12,6 +12,7 @@ globals:
   ReactDOM: true
   p5: true
   ReactP5Wrapper: true
+  Nzh: true
 parserOptions:
   ecmaFeatures:
     jsx: true
