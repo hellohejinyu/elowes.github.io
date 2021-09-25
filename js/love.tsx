@@ -52,13 +52,16 @@ const ReactP5Wrapper = memo(
 const Item = ({
   prefix,
   num,
-  label,
+  suffix,
 }: {
   prefix?: string
-  num: number
-  label?: string
+  num?: number
+  suffix?: string
 }) => {
   const renderer = useMemo(() => {
+    if (!num) {
+      return null
+    }
     let str = convertToChinaNum(num)
     const arr = str.split('点')
     if (arr.length > 1) {
@@ -69,11 +72,15 @@ const Item = ({
   }, [num])
   return (
     <div className="item">
-      {prefix && prefix.split('').map((l, i) => <span key={i}>{l}</span>)}
-      {renderer.map((l, i) => (
+      {prefix?.split('').map((l, i) => (
         <span key={i}>{l}</span>
       ))}
-      {label && label.split('').map((l, i) => <span key={i}>{l}</span>)}
+      {renderer?.map((l, i) => (
+        <span key={i}>{l}</span>
+      ))}
+      {suffix?.split('').map((l, i) => (
+        <span key={i}>{l}</span>
+      ))}
     </div>
   )
 }
@@ -96,6 +103,26 @@ const msFormat = (s: number) => {
   return { day, hour, minute, second, ms }
 }
 
+const startTime = new Date(2021, 6, 10, 18, 9).getTime()
+
+const getFutureDays = (days: number) => {
+  const targetTime = days * 24 * 60 * 60 * 1e3 + startTime
+  const targetDate = new Date(targetTime)
+  const year = targetDate.getFullYear()
+  const month = targetDate.getMonth() + 1
+  const date = targetDate.getDate()
+
+  const toChinaNum = (s: number) =>
+    (s + '')
+      .split('')
+      .map((l) => convertToChinaNum(parseInt(l)))
+      .join('')
+
+  return `${toChinaNum(year)}年${convertToChinaNum(month)}月${convertToChinaNum(
+    date,
+  )}日`
+}
+
 const App = () => {
   const [time, setTime] = useState<{
     day: number
@@ -108,13 +135,7 @@ const App = () => {
 
   useEffect(() => {
     const calc = () => {
-      setTime(
-        msFormat(
-          Math.floor(
-            new Date().getTime() - new Date(2021, 6, 10, 18, 9).getTime(),
-          ),
-        ),
-      )
+      setTime(msFormat(Math.floor(new Date().getTime() - startTime)))
     }
     fetch('https://v1.hitokoto.cn/?c=a&c=h&c=kencode=json&chartset=utf-8')
       .then((res) => res.json())
@@ -157,9 +178,14 @@ const App = () => {
       </div>
       {time && (
         <div className="days">
-          <Item num={Number((time.day + dot).toFixed(maxLen))} label={`天`} />
+          <Item num={Number((time.day + dot).toFixed(maxLen))} suffix={`天`} />
         </div>
       )}
+      <div className="feature">
+        <div>{getFutureDays(100)}</div>
+        <div>{getFutureDays(1000)}</div>
+        <div>{getFutureDays(10000)}</div>
+      </div>
       {poem && (
         <div className="poem">
           <div style={{ textAlign: 'justify', lineHeight: 1.5 }}>{poem[0]}</div>

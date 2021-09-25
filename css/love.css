@@ -991,10 +991,6 @@
   box-sizing     : border-box;
 }
 
-.days>div:last-child {
-  margin-left: 16px;
-}
-
 .item {
   font-size     : 8vw;
   color         : #333;
@@ -1003,6 +999,7 @@
   align-items   : flex-end;
   flex-direction: column;
   line-height   : 1;
+  margin-left   : 16px;
 }
 
 .item>span {
@@ -1012,6 +1009,8 @@
 @media (orientation:landscape) {
   .item {
     flex-direction: row;
+    margin-left   : 0;
+    margin-top    : 12px;
   }
 
   .days {
@@ -1020,11 +1019,6 @@
     padding-left : 8vh;
     padding-right: initial;
   }
-
-  .days>div:last-child {
-    margin-left: 0;
-    margin-top : 12px;
-  }
 }
 
 .poem {
@@ -1032,7 +1026,19 @@
   bottom        : 16px;
   left          : 16px;
   right         : 16px;
-  letter-spacing: .1em;
+  letter-spacing: .06em;
+}
+
+.feature {
+  position      : fixed;
+  bottom        : 120px;
+  left          : 16px;
+  letter-spacing: .06em;
+}
+
+.feature>div {
+  margin     : 8px 0;
+  line-height: 1;
 }
 
 @media screen and (min-width: 720px) {
