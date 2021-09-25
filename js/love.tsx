@@ -126,7 +126,7 @@ const App = () => {
     calc()
     setInterval(() => {
       calc()
-    }, 650)
+    }, 1500)
   }, [])
 
   useEffect(() => {
