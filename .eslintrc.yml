@@ -13,6 +13,7 @@ globals:
   p5: true
   ReactP5Wrapper: true
   Nzh: true
+  useTypeWritter: true
 parserOptions:
   ecmaFeatures:
     jsx: true
