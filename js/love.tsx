@@ -103,7 +103,7 @@ const msFormat = (s: number) => {
   return { day, hour, minute, second, ms }
 }
 
-const startTime = new Date(2021, 6, 10, 18, 9).getTime()
+const startTime = new Date(2021, 6, 10, 17, 40).getTime()
 // const startTime = new Date(2021, 6, 10, 0, 0).getTime()
 
 // const getFutureDays = (days: number) => {
