@@ -275,17 +275,17 @@ const App = () => {
               </div>
             )}
             {/* <div className="feature">
-        <div>{getFutureDays(100)}</div>
-        <div>{getFutureDays(1000)}</div>
-        <div>{getFutureDays(10000)}</div>
-      </div> */}
+              <div>{getFutureDays(100)}</div>
+              <div>{getFutureDays(1000)}</div>
+              <div>{getFutureDays(10000)}</div>
+            </div> */}
             {poem && (
               <div className="poem">
                 <div style={{ textAlign: 'justify', lineHeight: 1.5 }}>
                   {poem[0]}
                 </div>
                 <div style={{ textAlign: 'right', marginTop: 8 }}>
-                  ——&nbsp;&nbsp;{poem[1]}
+                  ——<span style={{ marginLeft: 8 }}>{poem[1]}</span>
                 </div>
               </div>
             )}
