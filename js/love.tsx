@@ -219,7 +219,7 @@ const App = () => {
   }, [time])
 
   useEffect(() => {
-    if (time && time.day === 300 && hide) {
+    if (time && time.day === 298 && hide) {
       setHide(false)
     }
   }, [time, hide])
