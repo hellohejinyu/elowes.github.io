@@ -225,7 +225,7 @@ const App = () => {
   }, [time])
 
   useEffect(() => {
-    if (time && time.day === 500 && hide) {
+    if (time && time.day === 501 && hide) {
       setHide(false)
     }
   }, [time, hide])
