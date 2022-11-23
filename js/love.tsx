@@ -201,7 +201,7 @@ const App = () => {
   useEffect(() => {
     const titles = hide
       ? ['～你爱我～', '～我爱你～', '～蜜雪冰城甜蜜蜜～']
-      : ['~伍百天~', '～吼吼吼～', '~期待陆百天~']
+      : ['~伍佰天~', '～吼吼吼～', '~期待陆佰天~']
     let index = 0
     document.title = titles[index % titles.length]
     const timer = setInterval(() => {
