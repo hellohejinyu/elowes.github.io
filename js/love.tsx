@@ -1,5 +1,5 @@
-import waves from '/js/waves.js'
-import deepEqual from '/js/fast-deep-equal.js'
+import deepEqual from "/js/fast-deep-equal.js";
+import waves from "/js/waves.js";
 
 // @ts-expect-error
 const { createRef, memo, useEffect, useState, useMemo, useRef } = React
@@ -142,44 +142,30 @@ const App = () => {
   const [ended, setEnded] = useState(false)
   const name = useTypeWritter(magicName)
   const ss = useMemo(() => {
-    const res = [
-      '亲爱的好',
-      '时间飞快',
-      '甚至都没有意识到今天是五百天',
-      '以至于我都没有提前写好想对你说的话',
-      '好在背景音乐早就提前想好了',
-      '那么就在这个五百天的中午',
-      '来现场写写我想对你说的话吧',
-      '这一百天我们拍完了婚纱照',
-      '这是最开心的一天，也是最刺激的一天',
-      '我们也怄了在一起以来最大的气',
-      '有趣的是我现在回看四百天的文字',
-      '竟然仿佛能够看出一点苗头',
-      '不过庆幸我们还在一起',
-      '这些事情只会是小插曲，是爱情中的黏合剂',
-      '接下来要做的是继续改变自己',
-      '让自己变得更好',
-      '让我们变得更好',
-      '一起在跌跌撞撞中相互扶持相互成长',
-      '下个百天见证更棒的我们',
-      '展望未来，六百天的时候',
-      '我们应该是住在新的房子里面了',
-      '要是看房顺利的话',
-      '说不定都开始装修属于我们自己的房子了呢',
-      '现在想来期待满满',
-      '也不知道哪套房子最终会属于我们',
-      '但是其实我也不是很在乎',
-      '毕竟只要是和你在一起',
-      '住在哪里我都无所谓，都很开心',
-      '内心：现在说这种话有点肉麻，羞耻感满满',
-      '一起期待六百天吧',
-      '以上内容均为现场实写',
-      '真情实感，如有雷同，绝无可能',
+    return [
+      '早上好',
+      '不知不觉已经又过了一个百天了',
+      '由于这次没有准备写的文字',
+      '本来准备拿你没看的四百天来凑数',
+      '但是读了一遍发现不太适合',
+      '果然每个百天都有属于每个百天的文字',
+      '庆幸的是音乐早就准备好了',
+      '不然临时让我去找一个音乐那可太为难了',
+      '毕竟你知道我的听歌风格',
+      '从来就没有一首正常的',
+      '我相信你也不会想在这里听到「中国香肠」对吧',
+      '我的文字功底也不咋样',
+      '写不了太多',
+      '要说的话也早落在日常的琐碎中',
+      '只觉得一切都没有那么容易',
+      '很开心我们到了第六百天',
+      '期待下一个六百天',
       '爱你的老何',
-      '二〇二二年十一月',
+      '犟嘴的老何',
+      '执拗的老何',
+      '二〇二三年三月',
       'HERUI.LOVE',
     ]
-    return res
   }, [time])
   useEffect(() => {
     const calc = () => {
@@ -201,7 +187,7 @@ const App = () => {
   useEffect(() => {
     const titles = hide
       ? ['～你爱我～', '～我爱你～', '～蜜雪冰城甜蜜蜜～']
-      : ['~伍佰天~', '～吼吼吼～', '~期待陆佰天~']
+      : ['~陆佰天~', '～吼吼吼～', '~期待柒佰天~']
     let index = 0
     document.title = titles[index % titles.length]
     const timer = setInterval(() => {
@@ -225,7 +211,7 @@ const App = () => {
   }, [time])
 
   useEffect(() => {
-    if (time && time.day === 501 && hide) {
+    if (time && time.day === 600 && hide) {
       setHide(false)
     }
   }, [time, hide])
@@ -299,7 +285,7 @@ const App = () => {
               </>
             ) : (
               <>
-                <div className="big">伍佰天</div>
+                <div className="big">陆佰天</div>
                 <div
                   className="btn"
                   onClick={() => {
@@ -324,7 +310,7 @@ const App = () => {
             <audio
               ref={audioRef}
               style={{ display: 'none' }}
-              src="https://cdn.30x.link/love5.mp3"
+              src="https://cdn.30x.link/love6.mp3"
               autoPlay
             />
           </div>
