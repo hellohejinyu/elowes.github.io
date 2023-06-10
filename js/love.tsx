@@ -1,5 +1,5 @@
-import deepEqual from "/js/fast-deep-equal.js";
-import waves from "/js/waves.js";
+import deepEqual from '/js/fast-deep-equal.js'
+import waves from '/js/waves.js'
 
 // @ts-expect-error
 const { createRef, memo, useEffect, useState, useMemo, useRef } = React
@@ -143,27 +143,29 @@ const App = () => {
   const name = useTypeWritter(magicName)
   const ss = useMemo(() => {
     return [
-      '早上好',
-      '不知不觉已经又过了一个百天了',
-      '由于这次没有准备写的文字',
-      '本来准备拿你没看的四百天来凑数',
-      '但是读了一遍发现不太适合',
-      '果然每个百天都有属于每个百天的文字',
-      '庆幸的是音乐早就准备好了',
-      '不然临时让我去找一个音乐那可太为难了',
-      '毕竟你知道我的听歌风格',
-      '从来就没有一首正常的',
-      '我相信你也不会想在这里听到「中国香肠」对吧',
-      '我的文字功底也不咋样',
-      '写不了太多',
-      '要说的话也早落在日常的琐碎中',
-      '只觉得一切都没有那么容易',
-      '很开心我们到了第六百天',
-      '期待下一个六百天',
-      '爱你的老何',
-      '犟嘴的老何',
-      '执拗的老何',
-      '二〇二三年三月',
+      '早上好泥小汁',
+      '日子过得真是快呀',
+      '转眼都七百天了',
+      '七百天，仿佛昨天才刚刚开始',
+      '又好像已经过去一生一世',
+      '时间的流逝总是让人感慨万千',
+      '在这七百天中',
+      '我们一起经历了许多事情',
+      '快乐、麻烦、挑战、期待和愤怒',
+      '但是我们的爱让这一切变得值得',
+      '我知道我们还有很多事情要做',
+      '很多地方要去',
+      '很多目标要实现',
+      '但是，只要我们在一起',
+      '我们就拥有一切',
+      '谢谢你七百天以来的支持和陪伴',
+      '我爱你',
+      '期待我们的未来的无数个七百天',
+      '我们要一直爱下去，直到永远',
+      '你曾说我变了，不再说情话了',
+      '希望上面的这些可以弥补对你造成的创伤',
+      '爱你的铅笔头',
+      '二〇二三年六月',
       'HERUI.LOVE',
     ]
   }, [time])
@@ -187,7 +189,7 @@ const App = () => {
   useEffect(() => {
     const titles = hide
       ? ['～你爱我～', '～我爱你～', '～蜜雪冰城甜蜜蜜～']
-      : ['~陆佰天~', '～吼吼吼～', '~期待柒佰天~']
+      : ['~柒佰天~', '～吼吼吼～', '~期待捌佰天~']
     let index = 0
     document.title = titles[index % titles.length]
     const timer = setInterval(() => {
@@ -211,7 +213,7 @@ const App = () => {
   }, [time])
 
   useEffect(() => {
-    if (time && time.day === 600 && hide) {
+    if (time && time.day === 700 && hide) {
       setHide(false)
     }
   }, [time, hide])
@@ -285,7 +287,7 @@ const App = () => {
               </>
             ) : (
               <>
-                <div className="big">陆佰天</div>
+                <div className="big">柒佰天</div>
                 <div
                   className="btn"
                   onClick={() => {
@@ -310,7 +312,7 @@ const App = () => {
             <audio
               ref={audioRef}
               style={{ display: 'none' }}
-              src="https://cdn.30x.link/love6.mp3"
+              src="https://cdn.30x.link/love7.mp3"
               autoPlay
             />
           </div>
@@ -320,5 +322,5 @@ const App = () => {
   )
 }
 
-// @ts-expect-error
-ReactDOM.render(<App />, document.getElementById('app'))
+const root = ReactDOM.createRoot(document.getElementById('app'))
+root.render(<App />)

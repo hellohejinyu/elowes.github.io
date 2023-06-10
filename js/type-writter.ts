@@ -1,3 +1,4 @@
+// @ts-expect-error
 const { useState, useEffect, useRef } = React
 
 class TypeWritter {

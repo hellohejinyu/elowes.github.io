@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export default function equal(a, b) {
   if (a === b) return true
 
