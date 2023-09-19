@@ -72,15 +72,9 @@ const Item = ({
   }, [num])
   return (
     <div className="item">
-      {prefix?.split('').map((l, i) => (
-        <span key={i}>{l}</span>
-      ))}
-      {renderer?.map((l, i) => (
-        <span key={i}>{l}</span>
-      ))}
-      {suffix?.split('').map((l, i) => (
-        <span key={i}>{l}</span>
-      ))}
+      {prefix?.split('').map((l, i) => <span key={i}>{l}</span>)}
+      {renderer?.map((l, i) => <span key={i}>{l}</span>)}
+      {suffix?.split('').map((l, i) => <span key={i}>{l}</span>)}
     </div>
   )
 }
@@ -143,29 +137,26 @@ const App = () => {
   const name = useTypeWritter(magicName)
   const ss = useMemo(() => {
     return [
-      '早上好泥小汁',
-      '日子过得真是快呀',
-      '转眼都七百天了',
-      '七百天，仿佛昨天才刚刚开始',
-      '又好像已经过去一生一世',
-      '时间的流逝总是让人感慨万千',
-      '在这七百天中',
-      '我们一起经历了许多事情',
-      '快乐、麻烦、挑战、期待和愤怒',
-      '但是我们的爱让这一切变得值得',
-      '我知道我们还有很多事情要做',
-      '很多地方要去',
-      '很多目标要实现',
-      '但是，只要我们在一起',
-      '我们就拥有一切',
-      '谢谢你七百天以来的支持和陪伴',
-      '我爱你',
-      '期待我们的未来的无数个七百天',
-      '我们要一直爱下去，直到永远',
-      '你曾说我变了，不再说情话了',
-      '希望上面的这些可以弥补对你造成的创伤',
-      '爱你的铅笔头',
-      '二〇二三年六月',
+      '亲爱的中午好',
+      '这已经是写的第八篇文字了',
+      '八百天的日子实在有点太快',
+      '在这八百天的旅程中',
+      '我们一同经历了快乐',
+      '面对了麻烦',
+      '接受了挑战',
+      '满怀期待',
+      '也曾愤怒',
+      '然而，正是我们坚定的爱',
+      '让这一切变得有了价值',
+      '我深知',
+      '未来还有许多事情要去做',
+      '众多地方要去探索',
+      '梦想要去实现',
+      '然而，只要我们紧紧相拥在一起',
+      '我们便拥有了一切',
+      '谢谢你在这八百天中的支持和陪伴',
+      '我深深地爱着你',
+      '二〇二三年九月',
       'HERUI.LOVE',
     ]
   }, [time])
@@ -189,7 +180,7 @@ const App = () => {
   useEffect(() => {
     const titles = hide
       ? ['～你爱我～', '～我爱你～', '～蜜雪冰城甜蜜蜜～']
-      : ['~柒佰天~', '～吼吼吼～', '~期待捌佰天~']
+      : ['~捌佰天~', '～吼吼吼～', '~期待玖佰天~']
     let index = 0
     document.title = titles[index % titles.length]
     const timer = setInterval(() => {
@@ -213,7 +204,7 @@ const App = () => {
   }, [time])
 
   useEffect(() => {
-    if (time && time.day === 700 && hide) {
+    if (time && time.day === 800 && hide) {
       setHide(false)
     }
   }, [time, hide])
@@ -287,7 +278,7 @@ const App = () => {
               </>
             ) : (
               <>
-                <div className="big">柒佰天</div>
+                <div className="big">捌佰天</div>
                 <div
                   className="btn"
                   onClick={() => {
@@ -312,7 +303,7 @@ const App = () => {
             <audio
               ref={audioRef}
               style={{ display: 'none' }}
-              src="https://cdn.30x.link/love7.mp3"
+              src="https://cdn.30x.link/love8.mp3"
               autoPlay
             />
           </div>
