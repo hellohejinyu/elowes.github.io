@@ -4,7 +4,7 @@ import waves from '/js/waves.js'
 // @ts-expect-error
 const { createRef, memo, useEffect, useState, useMemo, useRef } = React
 
-const createCanvas = (sketch, container) => {
+const createCanvas = (sketch: any, container: any) => {
   // @ts-expect-error
   // eslint-disable-next-line new-cap
   return new p5(sketch, container)
@@ -137,26 +137,25 @@ const App = () => {
   const name = useTypeWritter(magicName)
   const ss = useMemo(() => {
     return [
-      '亲爱的中午好',
-      '这已经是写的第八篇文字了',
-      '八百天的日子实在有点太快',
-      '在这八百天的旅程中',
-      '我们一同经历了快乐',
-      '面对了麻烦',
-      '接受了挑战',
-      '满怀期待',
-      '也曾愤怒',
-      '然而，正是我们坚定的爱',
-      '让这一切变得有了价值',
-      '我深知',
-      '未来还有许多事情要去做',
-      '众多地方要去探索',
-      '梦想要去实现',
-      '然而，只要我们紧紧相拥在一起',
-      '我们便拥有了一切',
-      '谢谢你在这八百天中的支持和陪伴',
-      '我深深地爱着你',
-      '二〇二三年九月',
+      '亲爱的早上好',
+      '时光飞逝，已是我们的第九百天',
+      '在这漫长而美好的时光里',
+      '我们一同走过风风雨雨',
+      '喜笑怒骂，都成为珍贵的回忆',
+      '900天前的相遇是命运的安排',
+      '如今，我们决定牵手走过余生',
+      '婚礼的脚步越来越近，心中充满期待',
+      '爱在心间，温馨而坚定',
+      '一个月后，我们将携手迎接新的人生阶段',
+      '在这未知的旅途中，有你的陪伴',
+      '所有的不安都变得坚定而勇敢',
+      '感谢你在每一个瞬间的陪伴和支持',
+      '未来的日子里，我们还有许多梦想等待实现',
+      '但只要你在我身边，一切都变得可能',
+      '900天，是一个珍贵的礼物',
+      '谢谢你，我的爱人',
+      '期待着和你一起迎接更多美好的明天',
+      '爱你的老何',
       'HERUI.LOVE',
     ]
   }, [time])
@@ -180,7 +179,7 @@ const App = () => {
   useEffect(() => {
     const titles = hide
       ? ['～你爱我～', '～我爱你～', '～蜜雪冰城甜蜜蜜～']
-      : ['~捌佰天~', '～吼吼吼～', '~期待玖佰天~']
+      : ['~九百天~', '～吼吼吼～', '~期待一千天~']
     let index = 0
     document.title = titles[index % titles.length]
     const timer = setInterval(() => {
@@ -204,7 +203,7 @@ const App = () => {
   }, [time])
 
   useEffect(() => {
-    if (time && time.day === 800 && hide) {
+    if (time && time.day === 900 && hide) {
       setHide(false)
     }
   }, [time, hide])
@@ -278,7 +277,7 @@ const App = () => {
               </>
             ) : (
               <>
-                <div className="big">捌佰天</div>
+                <div className="big">玖佰天</div>
                 <div
                   className="btn"
                   onClick={() => {
@@ -303,7 +302,7 @@ const App = () => {
             <audio
               ref={audioRef}
               style={{ display: 'none' }}
-              src="https://cdn.30x.link/love8.mp3"
+              src="https://cdn.30x.link/love9.mp3"
               autoPlay
             />
           </div>

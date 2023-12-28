@@ -25,5 +25,6 @@ plugins:
 rules: {
   'react/prop-types': 'off',
   'import/no-absolute-path': 'off',
-  '@typescript-eslint/ban-ts-comment': 'off'
+  '@typescript-eslint/ban-ts-comment': 'off',
+  '@typescript-eslint/no-explicit-any': 'off'
 }
